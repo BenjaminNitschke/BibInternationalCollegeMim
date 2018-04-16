@@ -8,7 +8,7 @@ namespace DictionaryTest
     {
         public static void Main()
         {
-            //AssertResult(ToDictionary("a=1;b=2;c=3"), new[] { "1", "2", "3" });
+            AssertResult(ToDictionary("a=1;b=2;c=3"), new[] { "1", "2", "3" });
             AssertResult(ToDictionary("a=1;a=2"), new[] { "2" });
             //AssertResult(ToDictionary("a=1;;b=2"), new[] { "1", "2" });
             //AssertResult(ToDictionary("a="), new[] { "" });
@@ -39,8 +39,7 @@ namespace DictionaryTest
             {
                 string[] values = parts[i].Split('=');
 
-                if (parts[i] == "")
-                    continue;
+                if (parts[i] == "") continue;
 
                 if (result.ContainsKey(values[0]))
                     result[values[0]] = values[1];
