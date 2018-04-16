@@ -13,7 +13,9 @@ namespace DictionaryTests
 
 		public IDictionary<string, string> ToDictionary(string input)
 		{
-			return null;
+            Console.WriteLine("asdf");
+
+            return new Dictionary<string, string>();
 		}
 	}
 }
