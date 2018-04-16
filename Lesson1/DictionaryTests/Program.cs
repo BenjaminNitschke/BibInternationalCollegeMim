@@ -9,6 +9,8 @@ namespace DictionaryTests
 		{
 
 			Console.WriteLine("DictionaryTestsrrqr");
+
+            Console.WriteLine("Aenderung");
 		}
 
 		public IDictionary<string, string> ToDictionary(string input)
