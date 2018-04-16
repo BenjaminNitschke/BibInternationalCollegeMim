@@ -8,7 +8,7 @@ namespace DictionaryTests
 		public static void Main()
 		{
 
-			Console.WriteLine("DictionaryTestsrrqr");
+			Console.WriteLine("asdf");
 		}
 
 		public IDictionary<string, string> ToDictionary(string input)
