@@ -35,6 +35,7 @@
 *.lock
 
 *.ide
+
 bin/
 obj/
 
@@ -44,6 +45,7 @@ obj/
 
 *.iobj
 
+packages/
 Release/
 Debug/
 v15/
