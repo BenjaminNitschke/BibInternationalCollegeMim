@@ -1,21 +1,60 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 
-namespace DictionaryTests
+namespace DictionaryTest
 {
-	public class Program
-	{
-		public static void Main()
-		{
+    public class Program
+    {
+        public static void Main()
+        {
+            //AssertResult(ToDictionary("a=1;b=2;c=3"), new[] { "1", "2", "3" });
+            //AssertResult(ToDictionary("a=1;a=2"), new[] { "2" });
+            //AssertResult(ToDictionary("a=1;;b=2"), new[] { "1", "2" });
+            //AssertResult(ToDictionary("a="), new[] { "" });
+            Assert.Throws<Exception>(() => AssertResult(ToDictionary("=1"), new[] { "" }));
+            //AssertResult(ToDictionary(""), new string[] { });
+            //AssertResult(ToDictionary("a==1"), new[] { "=1" });
+        }
 
-			Console.WriteLine("DictionaryTestsrrqr");
-		}
+        private static void AssertResult(IDictionary<string, string> result, string[] expectedValues)
+        {
+            Assert.That(result.Count, Is.EqualTo(expectedValues.Length));
 
-		public IDictionary<string, string> ToDictionary(string input)
-		{
-            Console.WriteLine("asdf");
+            var index = 0;
 
-            return new Dictionary<string, string>();
-		}
-	}
+            foreach (var item in result)
+                Assert.That(item.Value, Is.EqualTo(expectedValues[index++]));
+        }
+
+        private static IDictionary<string, string> ToDictionary(string input)
+        {
+            //Dictionary<string, string> temp = new Dictionary<string, string>();
+
+            var result = new Dictionary<string, string>();
+
+            if (input == "")
+                return result;
+
+            string[] parts = input.Split(';');
+
+            for (int i = 0; i < parts.Length; i++)
+            {
+                if (parts[i] == "")
+                    continue;
+
+                string[] KeyValuePair = parts[i].Split(new[] { '=' }, 2);
+
+                if (result.ContainsKey(KeyValuePair[0]))
+                    result[KeyValuePair[0]] = KeyValuePair[1];
+
+                else (!result.ContainsKey(KeyValuePair[0]))
+                    result.Add(KeyValuePair[0], KeyValuePair[1]);
+
+                Console.WriteLine(KeyValuePair[0] + KeyValuePair[1]);
+            }
+            return result;
+        }
+
+    }
 }
