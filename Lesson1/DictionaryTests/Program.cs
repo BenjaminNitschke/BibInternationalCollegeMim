@@ -7,13 +7,13 @@ namespace DictionaryTests
 	{
 		public static void Main()
 		{
-
 			Console.WriteLine("DictionaryTestsrrqr");
+            ToDictionary("Moin");
 		}
 
-		public IDictionary<string, string> ToDictionary(string input)
+		public static IDictionary<string, string> ToDictionary(string input)
 		{
-			return null;
+			return new Dictionary<string,string>();
 		}
 	}
 }
