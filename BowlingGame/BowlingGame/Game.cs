@@ -24,7 +24,6 @@ namespace BowlingGame
                 {
                     score += 10 + pinsThrown[roll + 1] + pinsThrown[roll + 2];
                     roll++;
-                    totalThrows++;
                 }
                 else if (IsSpare(roll))
                 {
