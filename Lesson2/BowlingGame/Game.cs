@@ -35,10 +35,7 @@
 
         private bool IsStrike(int roll)
         {
-            if (pinsThrown[roll] == 10)
-                return true;
-            else
-                return false;
+            return pinsThrown[roll] == 10;
         }
 
 		private bool IsSpare(int roll)
