@@ -2,12 +2,8 @@
 {
 	public class Program
 	{
-        public static void Main()
-        {
-            Game.Roll(10);
-
-            Game.GetScore();
-        }
-
+		public static void Main()
+		{
+		}
 	}
 }
