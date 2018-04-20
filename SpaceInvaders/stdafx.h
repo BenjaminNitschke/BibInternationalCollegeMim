@@ -7,9 +7,15 @@
 
 #include "targetver.h"
 
-#include <stdio.h>
-#include <tchar.h>
+#define WIN32_LEAN_AND_MEAN             // Selten verwendete Komponenten aus Windows-Headern ausschlieﬂen
+// Windows-Headerdateien:
+#include <windows.h>
 
+// C RunTime-Headerdateien
+#include <stdlib.h>
+#include <malloc.h>
+#include <memory.h>
+#include <tchar.h>
 
 
 // TODO: Hier auf zus‰tzliche Header, die das Programm erfordert, verweisen.
