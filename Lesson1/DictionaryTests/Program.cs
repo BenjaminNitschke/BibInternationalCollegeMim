@@ -34,18 +34,22 @@ namespace DictionaryTests
 				AddToDictionary(part, result);
 			return result;
 		}
+            if (input == "")
+                return result;
 
-		private static void AddToDictionary(string part, Dictionary<string, string> result)
-		{
-			var entry = part.Split(new[] { '=' }, 2);
-			if (entry.Length != 2)
-				return;
-			if (entry[0] == "")
-				throw new Exception("Empty Key");
-			if (!result.ContainsKey(entry[0]))
-				result.Add(entry[0], entry[1]);
-			else
-				result[entry[0]] = entry[1];
-		}
-	}
+            var parts = input.Split(';');
+            for (int i = 0; i < parts.Length; i++)
+            {
+                var entry = parts[i].Split(new[] { '=' }, 2);
+
+                if (entry[0] == "")
+                    throw new Exception("Empty Key");
+                else if (!result.ContainsKey(entry[0]))
+                    result.Add(entry[0], entry[1]);
+                else
+                    result[entry[0]] = entry[1];
+            }
+            return result;
+        }
+    }
 }
