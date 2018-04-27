@@ -49,3 +49,4 @@ packages/
 Release/
 Debug/
 v15/
+*.cache
