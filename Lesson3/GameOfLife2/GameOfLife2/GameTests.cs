@@ -22,15 +22,34 @@ namespace GameOfLife2
         }
 
         [Test]
+        public void Create10x10Game()
+        {
+            game = new Game(10, 10);
+            Assert.That(game.Width, Is.EqualTo(10));
+            Assert.That(game.Height, Is.EqualTo(10));
+            //Assert.That(game.before.GetLength(0), Is.EqualTo(10));
+            //Assert.That(game.before.GetLength(1), Is.EqualTo(10));
+            game.Random();
+            game.Tick();
+        }
+
+        [Test]
+        public void Random()
+        {
+            game.Random();
+            game.Tick();
+        }
+
+        [Test]
         public void WorstPossibleGameOfLife()
         {
             game.Tick();
 
-            for (int y = 0; y < game.height; y++)
+            for (int y = 0; y < game.Height; y++)
             {
-                for (int x = 0; x < game.width; x++)
+                for (int x = 0; x < game.Width; x++)
                 {
-                    Assert.That(game.current[x, y], Is.False);
+                    Assert.That(game.IsAlive(x, y), Is.False);
                 }
             }
         }
@@ -41,10 +60,10 @@ namespace GameOfLife2
         [Test]
         public void CellWithFewerThanTwoNeighboursDies()
         {
-            game.before[1, 1] = true;
+            game.Set(1, 1, true);
             game.Tick();
 
-            Assert.That(game.current[1, 1], Is.False);
+            Assert.That(game.IsAlive(1, 1), Is.False);
         }
 
         /// <summary>
@@ -53,25 +72,25 @@ namespace GameOfLife2
         [Test]
         public void CellWithTwoOrThreeNeighboursLives()
         {
-            game.before[1, 1] = true;
-            game.before[0, 0] = true;
-            game.before[0, 1] = true;
+            game.Set(1, 1, true);
+            game.Set(0, 0, true);
+            game.Set(0, 1, true);
             game.Tick();
 
-            Assert.That(game.current[1, 1], Is.True);
+            Assert.That(game.IsAlive(1, 1), Is.True);
         }
 
         [Test]
         public void NothingHappensWithAllLivingCellsHavingTwoNeighbours()
         {
-            game.before[1, 1] = true;
-            game.before[0, 0] = true;
-            game.before[0, 1] = true;
+            game.Set(1, 1, true);
+            game.Set(0, 0, true);
+            game.Set(0, 1, true);
             game.Tick();
 
-            Assert.That(game.current[1, 1], Is.True);
-            Assert.That(game.current[0, 0], Is.True);
-            Assert.That(game.current[0, 1], Is.True);
+            Assert.That(game.IsAlive(1, 1), Is.True);
+            Assert.That(game.IsAlive(0, 0), Is.True);
+            Assert.That(game.IsAlive(0, 1), Is.True);
         }
 
         /// <summary>
@@ -80,14 +99,14 @@ namespace GameOfLife2
         [Test]
         public void CellWithMoreThanThreeNeighboursDies()
         {
-            game.before[1, 1] = true;
-            game.before[0, 0] = true;
-            game.before[0, 1] = true;
-            game.before[0, 2] = true;
-            game.before[1, 0] = true;
+            game.Set(1, 1, true);
+            game.Set(0, 0, true);
+            game.Set(0, 1, true);
+            game.Set(0, 2, true);
+            game.Set(1, 0, true);
             game.Tick();
 
-            Assert.That(game.current[1, 1], Is.False);
+            Assert.That(game.IsAlive(1, 1), Is.False);
         }
 
         /// <summary>
@@ -96,20 +115,34 @@ namespace GameOfLife2
         [Test]
         public void DeadCellWithExactlyThreeNeighboursLives()
         {
-            game.before[1, 1] = false;
-            game.before[0, 0] = true;
-            game.before[0, 1] = true;
-            game.before[0, 2] = true;
+            game.Set(1, 1, false);
+            game.Set(0, 0, true);
+            game.Set(0, 1, true);
+            game.Set(0, 2, true);
+            Assert.That(game.IsAlive(1, 1), Is.False);
             game.Tick();
+            Assert.That(game.IsAlive(1, 1), Is.True);
 
-            for (int x = 0; x < game.width; x++)
+            for (int x = 0; x < game.Width; x++)
             {
-                for (int y = 0; y < game.height; y++)
+                for (int y = 0; y < game.Height; y++)
                 {
                     bool shouldBeAlive = (x == 0 || x == 1) && y == 1;
-                    Assert.That(game.current[x, y], Is.EqualTo(shouldBeAlive), "Cell " + x + ", " + y);
+                    Assert.That(game.IsAlive(x, y), Is.EqualTo(shouldBeAlive), "Cell " + x + ", " + y);
                 }
             }
+        }
+
+        [Test]
+        public void SimulateTwoTicks()
+        {
+            game.Set(0, 0, true);
+            game.Set(0, 1, true);
+            game.Set(0, 2, true);
+            game.Tick();
+            Assert.That(game.IsAlive(1, 1), Is.True);
+            game.Tick();
+            Assert.That(game.IsAlive(1, 1), Is.False);
         }
     }
 }

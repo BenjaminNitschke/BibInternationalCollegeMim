@@ -1,20 +1,21 @@
-using System;
 using System.Threading;
 
 namespace GameOfLife2
 {
-    class Program
+    public class Program
     {
-        static void Main()
+        private static void Main()
         {
             Game game = new Game(10, 10);
-            game.Random();
+            //game.Random();
+            game.Glider();
+            game.Draw();
 
             while (true)
             {
+                Thread.Sleep(100);
                 game.Tick();
                 game.Draw();
-                Thread.Sleep(100);
             }
         }
     }

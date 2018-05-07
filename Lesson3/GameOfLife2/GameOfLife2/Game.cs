@@ -1,30 +1,43 @@
 using System;
+using System.Diagnostics;
 
 namespace GameOfLife2
 {
-    class Game
+    public class Game
     {
-        public bool[,] before;
-        public bool[,] current;
+        private bool[,] before;
+        private bool[,] current;
 
-        public int width;
-        public int height;
-
-        private Random random;
+        public int Width { get; }
+        public int Height { get; }
 
         public Game(int width, int height)
         {
             before = new bool[width, height];
             current = new bool[width, height];
-            this.width = width;
-            this.height = height;
+            Width = width;
+            Height = height;
+        }
+
+        public bool IsAlive(int x, int y)
+        {
+            return current[x, y];
+        }
+
+        public void Set(int x, int y, bool value)
+        {
+            current[x, y] = value;
         }
 
         public void Tick()
         {
-            for (int y = 0; y < height; y++)
+            bool[,] temp = before;
+            before = current;
+            current = temp;
+
+            for (int y = 0; y < Height; y++)
             {
-                for (int x = 0; x < width; x++)
+                for (int x = 0; x < Width; x++)
                 {
                     int neighbours = GetNumberOfNeighboursAlive(x, y);
 
@@ -45,10 +58,9 @@ namespace GameOfLife2
                             shouldLive = true;
                         }
                     }
-                    current[x, y] = shouldLive;
+                    Set(x, y, shouldLive);
                 }
             }
-            before = current;
         }
 
         private int GetNumberOfNeighboursAlive(int checkX, int checkY)
@@ -61,7 +73,7 @@ namespace GameOfLife2
                     int xPos = checkX + x;
                     int yPos = checkY + y;
 
-                    if ((x != 0 || y != 0) && xPos >= 0 && xPos < width && yPos >= 0 && yPos < height && before[xPos, yPos])
+                    if ((x != 0 || y != 0) && xPos >= 0 && xPos < Width && yPos >= 0 && yPos < Height && before[xPos, yPos])
                     {
                         numberOfNeighbours++;
                     }
@@ -73,28 +85,41 @@ namespace GameOfLife2
 
         public void Draw()
         {
-            for (int y = 0; y < height; y++)
+            string callingFrameClassName = new StackTrace().GetFrame(1).GetMethod().DeclaringType.Name;
+            if (!callingFrameClassName.Contains("GameTests"))
             {
-                for (int x = 0; x < width; x++)
+                Console.SetCursorPosition(0, 0);
+            }
+            for (int y = 0; y < Height; y++)
+            {
+                for (int x = 0; x < Width; x++)
                 {
-                    Console.Write(current[x, y] ? " +" : " -");
+                    Console.Write(IsAlive(x, y) ? " o" : " -");
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine();
         }
 
         public void Random()
         {
-            random = new Random();
+            Random random = new Random();
 
-            for (int x = 0; x < before.GetLength(0); x++)
+            for (int y = 0; y < Height; y++)
             {
-                for (int y = 0; y < before.GetLength(1); y++)
+                for (int x = 0; x < Width; x++)
                 {
-                    before[x, y] = current[x, y] = random.NextDouble() >= .5;
+                    Set(x, y, random.NextDouble() < .3);
                 }
             }
+        }
+
+        public void Glider()
+        {
+            Set(0, 2, true);
+            Set(1, 3, true);
+            Set(2, 1, true);
+            Set(2, 2, true);
+            Set(2, 3, true);
         }
     }
 }
