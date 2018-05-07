@@ -1,36 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameOfLife
 {
-    class Game
+    public class Game
     {
-        public bool[,] before;
-        public bool[,] current;
-        private Random rnd;
-        private int dimensions;
-
-        public void Setup(int dimensions)
+        public Game(int dimensions)
         {
-            this.dimensions = dimensions;
-            rnd = new Random();
+            Dimensions = dimensions;
+
             before = new bool[dimensions, dimensions];
             current = new bool[dimensions, dimensions];
-            for (int x = 0; x < before.GetLength(0); x++)
-                for (int y = 0; y < before.GetLength(1); y++)
-                    before[x, y] = rnd.Next(0, 10) < 4;
-            Draw(before);
         }
 
-        public int GetNeighbors(int xPos, int yPos)
+        public int Dimensions;
+        private bool[,] before;
+        private readonly bool[,] current;
+        private Random _rnd;
+
+        public void Setup()
+        {
+            Randomize();
+            Draw();
+        }
+
+        private int GetNeighbors(int xPos, int yPos)
         {
             int neighborCount = 0;
-            for (int x = xPos - 1; x < (xPos + 2); x++)
-                for (int y = yPos - 1; y < (yPos + 2); y++)
-                    if ((x != xPos || y != yPos) && x >= 0 && x < dimensions && y >= 0 && y < dimensions && before[x, y])
+            for (int x = xPos - 1; x < xPos + 2; x++)
+                for (int y = yPos - 1; y < yPos + 2; y++)
+                    if ((x != xPos || y != yPos) && x >= 0 && x < Dimensions && y >= 0 && y < Dimensions &&
+                        before[x, y])
                         neighborCount++;
             return neighborCount;
         }
@@ -42,43 +41,48 @@ namespace GameOfLife
             {
                 if (neighbors < 2)
                     return false;
-                else if (neighbors == 2 || neighbors == 3)
+                if (neighbors == 2 || neighbors == 3)
                     return true;
-                else
-                    return false;
-            }
-            else
-            {
-                if (neighbors == 3)
-                    return true;
-                else
-                    return false;
+                return false;
             }
 
+            if (neighbors == 3)
+                return true;
+            return false;
         }
 
         public void Tick()
         {
-            for (int x = 0; x < dimensions; x++)
-                for (int y = 0; y < dimensions; y++)
-                {
+            for (int x = 0; x < Dimensions; x++)
+                for (int y = 0; y < Dimensions; y++)
                     current[x, y] = CheckState(x, y);
-                    //Console.WriteLine("Tick");
-                }
             before = current;
         }
 
-        public void Draw(bool[,] array)
+        public void Draw()
         {
-            for (int x = 0; x < dimensions; x++)
+            for (int x = 0; x < Dimensions; x++)
             {
-                for (int y = 0; y < dimensions; y++)
-                    if (array[x, y])
-                        Console.Write("o ");
+                for (int y = 0; y < Dimensions; y++)
+                    if (current[x, y])
+                        Console.Write("+ ");
                     else
-                        Console.Write("x ");
+                        Console.Write("- ");
                 Console.WriteLine();
             }
+        }
+
+        public bool IsAlive(int x, int y)
+        {
+            return current[x, y];
+        }
+
+        public void Randomize()
+        {
+            _rnd = new Random();
+            for (int x = 0; x < before.GetLength(0); x++)
+                for (int y = 0; y < before.GetLength(1); y++)
+                    before[x, y] = _rnd.NextDouble() < 0.4;
         }
     }
 }

@@ -1,25 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Diagnostics;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace GameOfLife
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Game _game = new Game();
-            _game.Setup(5);
+            Game _game = new Game(10);
+            _game.Setup();
             while (true)
             {
                 Thread.Sleep(500);
                 Console.Clear();
                 _game.Tick();
-                _game.Draw(_game.current);
-            }            
+                _game.Draw();
+            }
         }
     }
 }
