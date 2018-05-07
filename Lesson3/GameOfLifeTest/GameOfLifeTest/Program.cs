@@ -1,15 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading;
 
-namespace GameOfLifeTest
+namespace GameOfLife
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main()
         {
+            var game = new Game(40, 40);
+            //game.Random();
+            game.Glider();
+
+            while (true)
+            {
+                game.Tick();
+                game.Draw();
+                Thread.Sleep(100);
+            }
         }
     }
 }
