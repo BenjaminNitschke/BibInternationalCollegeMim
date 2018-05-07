@@ -2,8 +2,10 @@
 #include "SpaceInvaders.h"
 #include <GLFW/glfw3.h>
 #include "Game.h"
+#include "Texture.h"
+using namespace CppGameEngine;
 
-class SpaceInvadersGame : CppGameEngine::Game
+class SpaceInvadersGame : public CppGameEngine::Game
 {
 public:
 	SpaceInvadersGame(std::string gameName) : CppGameEngine::Game(gameName) {}
@@ -14,23 +16,27 @@ public:
 	}
 };
 
-	int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
-		_In_opt_ HINSTANCE hPrevInstance,
-		_In_ LPWSTR    lpCmdLine,
-		_In_ int       nCmdShow)
+			int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
+				_In_opt_ HINSTANCE hPrevInstance,
+				_In_ LPWSTR    lpCmdLine,
+				_In_ int       nCmdShow)
 	{
-		glfwInit();
-		GLFWwindow* window = glfwCreateWindow(1280, 720, "Space Invaders", NULL, NULL);
-		int viewportWidth, viewportHeight;
 		auto game = new SpaceInvadersGame("Space Invaders");
-		while (!glfwWindowShouldClose(window))
+		auto texture = std::make_shared<Texture>("Background.png");
+		game->Run([]() 
 		{
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			glfwSwapBuffers(window);
-			glfwPollEvents();
-		}
+			glBegin(GL_TRIANGLES);
+			
+			glColor3f(1, 0, 0);
+			glVertex3f(-0.7f, -0.1f, 0.f);
+			glColor3f(0, 1, 0);
+			glVertex3f(0.7f, -0.1f, 0.f);
+			glColor3f(0, 0, 1);
+			glVertex3f(0.f, 0.7f, 0.f);
 
-		glfwTerminate();
+			glEnd();
+		});
+
 		return 0;
 		//    return (int) msg.wParam;
 	}
