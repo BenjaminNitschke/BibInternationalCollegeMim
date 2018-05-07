@@ -110,7 +110,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>..\glfw-3.2.1.bin.WIN64\lib-vc2015\glfw3.lib;opengl32.lib;x64\Debug\CppGameEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>..\glfw-3.2.1.bin.WIN64\lib-vc2015\glfw3.lib;opengl32.lib;x64\Debug\CppGameEngine.lib;libpng16.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -167,6 +167,9 @@
     <ResourceCompile Include="SpaceInvaders.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\..\CppCourse\Day2\SpaceInvaders\Debug\Background.png">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
+    </Image>
     <Image Include="small.ico" />
     <Image Include="SpaceInvaders.ico" />
   </ItemGroup>

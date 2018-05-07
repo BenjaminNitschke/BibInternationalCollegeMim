@@ -45,5 +45,8 @@
     <Image Include="SpaceInvaders.ico">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="..\..\..\CppCourse\Day2\SpaceInvaders\Debug\Background.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
