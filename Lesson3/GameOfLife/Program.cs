@@ -6,8 +6,7 @@ namespace GameOfLife
 	{
 		public static void Main()
 		{
-			/*homework
-			var game = new Game(10, 10);
+			var game = new Game(80, 26);
 			game.Random();
 			while (true)
 			{
@@ -15,7 +14,6 @@ namespace GameOfLife
 				game.Draw();
 				Thread.Sleep(100);
 			}
-			*/
 		}
 	}
 }

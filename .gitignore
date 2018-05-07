@@ -50,3 +50,5 @@ Release/
 Debug/
 v15/
 *.cache
+Lesson3/GameOfLife/_NCrunch_GameOfLife/GameOfLife.crunchsolution.cache
+*.cache
