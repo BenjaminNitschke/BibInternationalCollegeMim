@@ -8,12 +8,12 @@ namespace GameOfLife
     {
         private static void Main(string[] args)
         {
-            Game _game = new Game(10);
+            Game _game = new Game(50);
             _game.Setup();
             while (true)
             {
-                Thread.Sleep(500);
-                Console.Clear();
+                Thread.Sleep(100);
+                Console.SetCursorPosition(0, 0);
                 _game.Tick();
                 _game.Draw();
             }

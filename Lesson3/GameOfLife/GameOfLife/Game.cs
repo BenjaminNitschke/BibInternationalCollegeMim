@@ -65,9 +65,9 @@ namespace GameOfLife
             {
                 for (int y = 0; y < Dimensions; y++)
                     if (current[x, y])
-                        Console.Write("+ ");
+                        Console.Write("x ");
                     else
-                        Console.Write("- ");
+                        Console.Write("o ");
                 Console.WriteLine();
             }
         }
