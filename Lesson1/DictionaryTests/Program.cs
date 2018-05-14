@@ -1,8 +1,9 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using NUnit.Framework;
 
-namespace DictionaryTests
+namespace DictionaryTest
 {
 	public class Program
 	{
@@ -53,3 +54,4 @@ namespace DictionaryTests
         }
     }
 }
+ 
