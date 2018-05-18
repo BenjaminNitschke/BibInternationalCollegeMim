@@ -1,11 +1,32 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace GameOfLife
 {
 	public class Game
 	{
-		public bool[,] before = new bool[3, 3];
-		public bool[,] current = new bool[3, 3];
+		public Game(int width, int height)
+		{
+			Width = width;
+			Height = height;
+			before = new bool[width, height];
+			current = new bool[width, height];
+		}
+
+		public int Width { get; }
+		public int Height { get; }
+		private bool[,] before;
+		private bool[,] current;
+
+		public bool IsAlive(int x, int y)
+		{
+			return current[x, y];
+		}
+
+		public void Set(int x, int y, bool value)
+		{
+			current[x, y] = value;
+		}
 
 		public int GetNumberOfNeighboursAlive(int checkX, int checkY)
 		{
@@ -13,19 +34,20 @@ namespace GameOfLife
 			for (int x = -1; x <= 1; x++)
 			for (int y = -1; y <= 1; y++)
 			{
-				if ((x != 0 || y != 0) &&
-						x + checkX >= 0 && x + checkX < current.GetLength(0) &&
-						y + checkY >= 0 && y + checkY < current.GetLength(1) &&
-						before[x+checkX, y+checkY])
-						numberOfNeighbours++;
+				if ((x != 0 || y != 0) && x + checkX >= 0 && x + checkX < Width && y + checkY >= 0 &&
+						y + checkY < Height && before[x + checkX, y + checkY])
+					numberOfNeighbours++;
 			}
 			return numberOfNeighbours;
 		}
 
 		public void Tick()
 		{
-			for (int x = 0; x < current.GetLength(0); x++)
-			for (int y = 0; y < current.GetLength(1); y++)
+			var temp = before;
+			before = current;
+			current = temp;
+			for (int x = 0; x < Width; x++)
+			for (int y = 0; y < Height; y++)
 			{
 				var neighbours = GetNumberOfNeighboursAlive(x, y);
 				var isAlive = before[x, y];
@@ -42,18 +64,30 @@ namespace GameOfLife
 					if (neighbours == 3)
 						shouldLive = true;
 				}
-				current[x, y] = shouldLive;
+				Set(x, y, shouldLive);
 			}
 		}
 
 		public void Draw()
 		{
-			for (int y = 0; y < 3; y++)
+			var callingFrameClassName =
+				new StackTrace().GetFrame(1).GetMethod().DeclaringType.Name;
+			if (!callingFrameClassName.Contains("Tests"))
+				Console.SetCursorPosition(0, 0);
+			for (int y = 0; y < Height; y++)
 			{
-				for (int x = 0; x < 3; x++)
-					Console.Write(current[x, y] ? "*" : ".");
+				for (int x = 0; x < Width; x++)
+					Console.Write(IsAlive(x, y) ? "*" : ".");
 				Console.WriteLine();
 			}
+		}
+
+		public void Random()
+		{
+			var random = new Random();
+			for (int y = 0; y < Height; y++)
+			for (int x = 0; x < Width; x++)
+				Set(x, y, random.NextDouble() < 0.3);
 		}
 	}
 }

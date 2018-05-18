@@ -49,3 +49,12 @@ packages/
 Release/
 Debug/
 v15/
+*.cache
+_NCrunch_*
+*.cache
+Library/
+Temp/
+Managed/
+*_Data
+docs/
+html/
