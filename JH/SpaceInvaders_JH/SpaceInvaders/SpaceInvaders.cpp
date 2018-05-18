@@ -11,15 +11,27 @@ extern "C" FILE * __cdecl __iob_func(void)
 	return _iob;
 }
 
-class SpaceInvadersGame : public CppGameEngine::Game
+class SpaceInvadersGame : public Game
 {
 public:
-	SpaceInvadersGame(std::string gameName) : CppGameEngine::Game(gameName) {}
+	SpaceInvadersGame() : Game("Space Invaders") 
+	{
+		background = std::make_shared<Sprite>(std::make_shared<Texture>("Background.png"), 0, 0, 1, 1);
+		ship = std::make_shared<Sprite>(std::make_shared<Texture>("ship.png"), 0, -0.7f, 0.1f, 0.1f);
+	}
 
 	void PlayGame()
 	{
-
+		Run([&]()
+		{
+			background->Draw();
+			ship->Draw();
+		});
 	}
+
+  private:
+	std::shared_ptr<Sprite> background;
+	std::shared_ptr<Sprite> ship;
 };
 
 			int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
@@ -27,22 +39,8 @@ public:
 				_In_ LPWSTR    lpCmdLine,
 				_In_ int       nCmdShow)
 	{
-		auto game = new SpaceInvadersGame("Space Invaders");
-		auto texture = std::make_shared<Texture>("Background.png");
-		game->Run([]() 
-		{
-			glBegin(GL_TRIANGLES);
-			
-			glColor3f(1, 0, 0);
-			glVertex3f(-0.7f, -0.1f, 0.f);
-			glColor3f(0, 1, 0);
-			glVertex3f(0.7f, -0.1f, 0.f);
-			glColor3f(0, 0, 1);
-			glVertex3f(0.f, 0.7f, 0.f);
-
-			glEnd();
-		});
+		auto game = new SpaceInvadersGame();
+		game->PlayGame();
 
 		return 0;
-		//    return (int) msg.wParam;
 	}

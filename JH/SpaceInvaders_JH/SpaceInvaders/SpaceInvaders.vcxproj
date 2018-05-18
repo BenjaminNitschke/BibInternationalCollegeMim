@@ -88,11 +88,12 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\..\Cpp\CppGameEngine;..\..\..\Cpp\glfw-3.2.1.bin.WIN32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>../../glfw-3.2.1.bin.WIN64/lib-vc2015/glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../Cpp/glfw-3.2.1.bin.WIN32/lib-vc2015/glfw3.lib;opengl32.lib;..\Debug\CppGameEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -109,6 +110,10 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;..\x64\Debug\CppGameEngine.lib;..\SpaceInvaders\x64\Debug\libpng16.lib;..\SpaceInvaders\x64\Debug\zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -166,6 +171,7 @@
     <ResourceCompile Include="SpaceInvaders.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Background.png" />
     <Image Include="small.ico" />
     <Image Include="SpaceInvaders.ico" />
   </ItemGroup>
