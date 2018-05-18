@@ -18,6 +18,10 @@ public:
 	{
 		background = std::make_shared<Sprite>(std::make_shared<Texture>("Background.png"), 0, 0, 1, 1);
 		ship = std::make_shared<Sprite>(std::make_shared<Texture>("ship.png"), 0, -0.7f, 0.1f, 0.1f);
+		for (size_t i = 0; i < 10; i++)
+		{
+			enemies.push_back(std::make_shared<Sprite>(std::make_shared<Texture>("ship.png"), 0, -0.7f, 0.1f, 0.1f));
+		}
 	}
 
 	void PlayGame()
@@ -32,6 +36,7 @@ public:
   private:
 	std::shared_ptr<Sprite> background;
 	std::shared_ptr<Sprite> ship;
+	std::vector<std::shared_ptr<Sprite>> enemies;
 };
 
 			int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
