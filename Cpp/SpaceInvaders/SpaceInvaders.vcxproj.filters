@@ -45,5 +45,8 @@
     <Image Include="SpaceInvaders.ico">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Background.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
