@@ -93,7 +93,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>../../../Cpp/glfw-3.2.1.bin.WIN32/lib-vc2015/glfw3.lib;opengl32.lib;..\Debug\CppGameEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>..\..\..\Cpp\glfw-3.2.1.bin.WIN32\lib-vc2015\glfw3.lib;opengl32.lib;..\Debug\CppGameEngine.lib;..\..\..\Cpp\lpng1617\libpng16.lib;..\..\..\Cpp\lpng1617\zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
