@@ -112,6 +112,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>..\glfw-3.2.1.bin.WIN64\lib-vc2015\glfw3.lib;opengl32.lib;x64\Debug\CppGameEngine.lib;libpng16.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy *.png $(IntermediateOutputPath)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -167,8 +170,9 @@
     <ResourceCompile Include="SpaceInvaders.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\CppCourse\Day2\SpaceInvaders\Debug\Background.png">
+    <Image Include="Background.png">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </Image>
     <Image Include="small.ico" />
     <Image Include="SpaceInvaders.ico" />
