@@ -12,6 +12,7 @@ namespace CppGameEngine
 		Sprite(std::shared_ptr<Texture> texture, float x, float y, float width, float height)
 			: texture(texture), initialX(x), initialY(y), width(width), height(height * 2.0f) {}
 		void Draw(float x = 0.0f, float y = 0.0f);
+		void SetAspectRatio(float setHeight);
 		float GetWidth() { return width; }
 		bool IncreaseY(float amount) { initialY += amount; return initialY > 1.0f; }
 		float DistanceTo(std::shared_ptr<Sprite> other, float xOffset)
@@ -27,5 +28,6 @@ namespace CppGameEngine
 		float initialY;
 		float width;
 		float height;
+		float setHeight;
 	};
 }
