@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2000
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Space_Invaders_JH", "Space_Invaders_JH.vcxproj", "{92F80466-99CD-4630-8CCB-80CD30B8468B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CppGameEngine", "..\..\Cpp\CppGameEngine\CppGameEngine.vcxproj", "{C9D6B4A8-B693-4877-8B4F-CE667764033C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{92F80466-99CD-4630-8CCB-80CD30B8468B}.Debug|x64.ActiveCfg = Debug|x64
+		{92F80466-99CD-4630-8CCB-80CD30B8468B}.Debug|x64.Build.0 = Debug|x64
+		{92F80466-99CD-4630-8CCB-80CD30B8468B}.Debug|x86.ActiveCfg = Debug|Win32
+		{92F80466-99CD-4630-8CCB-80CD30B8468B}.Debug|x86.Build.0 = Debug|Win32
+		{92F80466-99CD-4630-8CCB-80CD30B8468B}.Release|x64.ActiveCfg = Release|x64
+		{92F80466-99CD-4630-8CCB-80CD30B8468B}.Release|x64.Build.0 = Release|x64
+		{92F80466-99CD-4630-8CCB-80CD30B8468B}.Release|x86.ActiveCfg = Debug|Win32
+		{92F80466-99CD-4630-8CCB-80CD30B8468B}.Release|x86.Build.0 = Debug|Win32
+		{C9D6B4A8-B693-4877-8B4F-CE667764033C}.Debug|x64.ActiveCfg = Debug|x64
+		{C9D6B4A8-B693-4877-8B4F-CE667764033C}.Debug|x64.Build.0 = Debug|x64
+		{C9D6B4A8-B693-4877-8B4F-CE667764033C}.Debug|x86.ActiveCfg = Debug|Win32
+		{C9D6B4A8-B693-4877-8B4F-CE667764033C}.Debug|x86.Build.0 = Debug|Win32
+		{C9D6B4A8-B693-4877-8B4F-CE667764033C}.Release|x64.ActiveCfg = Release|x64
+		{C9D6B4A8-B693-4877-8B4F-CE667764033C}.Release|x64.Build.0 = Release|x64
+		{C9D6B4A8-B693-4877-8B4F-CE667764033C}.Release|x86.ActiveCfg = Debug|Win32
+		{C9D6B4A8-B693-4877-8B4F-CE667764033C}.Release|x86.Build.0 = Debug|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0F32DBD3-B384-409E-9B9D-6F7406613C40}
+	EndGlobalSection
+EndGlobal
