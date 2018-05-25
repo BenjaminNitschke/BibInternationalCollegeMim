@@ -15,8 +15,10 @@ namespace CppGameEngine
 		void SetAspectRatio(float setHeight) {
 			height = setHeight;
 		}
-		void getPosX();
-		void getPosY();
+		void setPosX(float posX) { initialX = posX; };
+		void setPosY(float posY) { initialY = posY; };
+		float getPosX() { return initialX; };
+		float getPosY() { return initialY; };
 		float GetWidth() { return width; }
 		bool IncreaseY(float amount) { initialY += amount; return initialY > 1.0f; }
 		float DistanceTo(std::shared_ptr<Sprite> other, float xOffset)
