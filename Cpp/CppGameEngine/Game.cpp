@@ -30,6 +30,7 @@ Game::Game(std::string gameName)
 {
 	glfwInit();
 	window = glfwCreateWindow(1280, 720, gameName.c_str(), NULL, NULL);
+	glfwSetWindowSizeLimits(window, 1280, 720, 1280, 720);//Lockt Bildschirm Auflösung
 	glfwMakeContextCurrent(window);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

@@ -13,6 +13,12 @@ namespace CppGameEngine
 			: texture(texture), initialX(x), initialY(y), width(width), height(height * 2.0f) {}
 		void Draw(float x = 0.0f, float y = 0.0f);
 		float GetWidth() { return width; }
+		float GetHeight() { return height; }
+		float GetPosX() { return initialX; }
+		float GetPosY() { return initialY; }
+		void SetPosX(float newX) { initialX = newX; }
+		void SetPosY(float newY) { initialY = newY; }
+
 		bool IncreaseY(float amount) { initialY += amount; return initialY > 1.0f; }
 		float DistanceTo(std::shared_ptr<Sprite> other, float xOffset)
 		{
