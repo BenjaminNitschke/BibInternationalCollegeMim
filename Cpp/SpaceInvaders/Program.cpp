@@ -17,6 +17,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_ int       nCmdShow)
 {
 	auto game = new SpaceInvadersGame();
-	//game->PlayGame();
+	game->PlayGame();
 	return 0;
 }
