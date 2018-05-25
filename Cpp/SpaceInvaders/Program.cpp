@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "SpaceInvadersGame.h"
 
-using namespace CppGameEngine;
-
 FILE _iob[] = { *stdin, *stdout, *stderr };
 extern "C" FILE * __cdecl __iob_func(void)
 {
