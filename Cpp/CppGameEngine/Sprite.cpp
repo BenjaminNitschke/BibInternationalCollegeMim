@@ -17,6 +17,5 @@ void Sprite::Draw(float x, float y)
 	glVertex3f(-1 + (initialX + x + width) * 2, -1 + (initialY + y + height) * 2, 0);
 	glTexCoord2d(0, 1);
 	glVertex3f(-1 + (initialX + x) * 2, -1 + (initialY + y + height) * 2, 0);
-
 	glEnd();
 }
