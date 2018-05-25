@@ -17,7 +17,6 @@ namespace DictionaryTests
 				Console.WriteLine(pair.Key + ": "+pair.Value);
 		}
 
-
 		public static IDictionary<string, string> ToDictionary(string input)
 		{
 			return new Dictionary<string, string>();
