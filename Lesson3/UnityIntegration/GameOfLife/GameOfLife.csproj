@@ -224,6 +224,8 @@
   <ItemGroup>
     <Compile Include="Assets\Game.cs" />
     <Compile Include="Assets\GameOfLifeUpdater.cs" />
+    <Compile Include="Assets\MenuState.cs" />
+    <Compile Include="Assets\MenuStateMachine.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
