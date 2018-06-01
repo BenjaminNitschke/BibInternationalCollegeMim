@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Space_Invaders_JH", "Space_Invaders_JH.vcxproj", "{92F80466-99CD-4630-8CCB-80CD30B8468B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C9D6B4A8-B693-4877-8B4F-CE667764033C} = {C9D6B4A8-B693-4877-8B4F-CE667764033C}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CppGameEngine", "..\..\Cpp\CppGameEngine\CppGameEngine.vcxproj", "{C9D6B4A8-B693-4877-8B4F-CE667764033C}"
 EndProject

@@ -21,12 +21,15 @@
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="Sprite.h" />
+    <ClInclude Include="SpriteSheet.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="Vector2D.h" />
     <ClInclude Include="VertexPositionUV.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="SpriteSheet.cpp" />
     <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
