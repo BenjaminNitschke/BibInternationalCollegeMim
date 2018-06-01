@@ -4,17 +4,13 @@
 
 using namespace CppGameEngine;
 
-
-double animationTime = 0;
-int animationFrame = 0;
-
 void SpriteSheet::Draw(float x, float y)
 {
 	glBindTexture(GL_TEXTURE_2D, texture->GetHandle());
 	glEnable(GL_TEXTURE_2D);
 	glBegin(GL_QUADS);
-	animationTime = glfwGetTime();
-	animationFrame = (int)(animationTime * 24);
+	animationTime = glfwGetTime() - startTime;
+	int animationFrame = (int)(animationTime * 24);
 	int col = animationFrame % NumberOfColumns;
 	int row = (animationFrame / NumberOfColumns) % NumberOfRows;
 	float u1 = col / (float)NumberOfColumns;

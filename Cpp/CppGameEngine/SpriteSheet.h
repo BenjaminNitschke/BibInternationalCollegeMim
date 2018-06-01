@@ -12,14 +12,15 @@ namespace CppGameEngine
 	public:
 		SpriteSheet(std::shared_ptr<Texture> texture, float x, float y,
 			float width, float height, int numberOfColumns, int numberOfRows)
-			: Sprite(texture, x, y, width, height),
+			: Sprite(texture, x, y, width, height), animationTime(0), startTime(glfwGetTime()),
 			NumberOfColumns(numberOfColumns), NumberOfRows(numberOfRows) {}
 
 		void Draw(float x = 0.0f, float y = 0.0f);
+		float animationTime;
 
 	private:
 		int NumberOfColumns;
 		int NumberOfRows;
-		float animationTime;
+		double startTime;
 	};
 }
