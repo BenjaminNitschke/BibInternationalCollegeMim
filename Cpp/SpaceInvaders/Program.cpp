@@ -14,6 +14,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_ LPWSTR    lpCmdLine,
 	_In_ int       nCmdShow)
 {
+	//TODO: Sprite Animations, explosion 24fps, 48
 	auto game = new SpaceInvadersGame();
 	game->PlayGame();
 	return 0;

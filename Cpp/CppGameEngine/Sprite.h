@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 #include "Texture.h"
+#include "Vector2D.h"
 
 namespace CppGameEngine
 {
@@ -14,8 +15,7 @@ namespace CppGameEngine
 		void Draw(float x = 0.0f, float y = 0.0f);
 		float GetWidth() { return width; }
 		float GetHeight() { return height; }
-		float GetPosX() { return initialX; }
-		float GetPosY() { return initialY; }
+		Vector2D GetPosition() { return Vector2D(initialX, initialY); }
 		void SetPosX(float newX) { initialX = newX; }
 		void SetPosY(float newY) { initialY = newY; }
 
