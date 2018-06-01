@@ -12,7 +12,7 @@ namespace CppGameEngine
 		// multiply heights by 2, so 2, 1 is required to fill the whole screen with this code.
 		Sprite(std::shared_ptr<Texture> texture, float x, float y, float width, float height)
 			: texture(texture), initialX(x), initialY(y), width(width), height(height * 2.0f) {}
-		void Draw(float x = 0.0f, float y = 0.0f);
+		void virtual Draw(float x = 0.0f, float y = 0.0f);
 		float GetWidth() { return width; }
 		float GetHeight() { return height; }
 		Vector2D GetPosition() { return Vector2D(initialX, initialY); }
@@ -27,7 +27,7 @@ namespace CppGameEngine
 			return sqrt(distanceX*distanceX + distanceY*distanceY);
 		}
 		
-	private:
+	protected:
 		std::shared_ptr<Texture> texture;
 		float initialX;
 		float initialY;
