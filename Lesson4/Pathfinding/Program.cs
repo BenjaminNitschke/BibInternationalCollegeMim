@@ -8,7 +8,7 @@ namespace Pathfinding
 		{
 			var map = new Map(7, 7);
 			map.FillWithBlockade();
-			map.SetStart(0, 1);
+			map.SetStart(2, 1);
 			map.SetEnd(1, 6);
 			map.FindWay();
 			map.Draw();
