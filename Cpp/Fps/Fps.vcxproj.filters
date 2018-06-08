@@ -24,6 +24,9 @@
     <ClInclude Include="Fps.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FpsGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
