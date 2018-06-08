@@ -32,7 +32,7 @@ Game::Game(std::string gameName)
 	window = glfwCreateWindow(1280, 720, gameName.c_str(), NULL, NULL);
 	glfwMakeContextCurrent(window);
 	//Für verhindern der verzerrung bei resizing
-	glfwSetWindowSizeLimits(window, 1280, 720, 1280, 720);
+	//glfwSetWindowSizeLimits(window, 1280, 720, 1280, 720);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glfwSetKeyCallback(window, OnKeyPressed);
