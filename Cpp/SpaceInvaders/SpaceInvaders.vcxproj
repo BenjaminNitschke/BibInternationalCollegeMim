@@ -173,6 +173,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Background.png" />
+    <Image Include="explosion.png" />
     <Image Include="small.ico" />
     <Image Include="SpaceInvaders.ico" />
   </ItemGroup>
