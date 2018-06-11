@@ -1,0 +1,6 @@
+E:\zBIB_Zeug\MIM_nietschke\Pathfinding\Pathfinding\bin\Debug\Pathfinding.exe.config
+E:\zBIB_Zeug\MIM_nietschke\Pathfinding\Pathfinding\bin\Debug\Pathfinding.exe
+E:\zBIB_Zeug\MIM_nietschke\Pathfinding\Pathfinding\bin\Debug\Pathfinding.pdb
+E:\zBIB_Zeug\MIM_nietschke\Pathfinding\Pathfinding\obj\Debug\Pathfinding.csprojResolveAssemblyReference.cache
+E:\zBIB_Zeug\MIM_nietschke\Pathfinding\Pathfinding\obj\Debug\Pathfinding.exe
+E:\zBIB_Zeug\MIM_nietschke\Pathfinding\Pathfinding\obj\Debug\Pathfinding.pdb
