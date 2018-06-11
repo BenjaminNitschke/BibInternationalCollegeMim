@@ -3,106 +3,119 @@ using System.Collections.Generic;
 
 namespace Pathfinding
 {
+	/// <summary>
+	/// Helps with Pathfinding using A*
+	/// </summary>
 	public class Map
 	{
 		public Map(int width, int height)
 		{
-			Width = width;
-			Height = height;
-			data = new int[Width, Height];
+			this.width = width;
+			this.height = height;
+			map = new int[width, height];
+			for (int x = 0; x < width; x++)
+			for (int y = 0; y < height; y++)
+				map[x, y] = Empty;
 		}
-		public int Width { get; }
-		public int Height { get; }
-		private readonly int[,] data;
-		//All numbers are the pathfind way: 0, 1, 2, 3, 4
-		private const int Blockade = -1;
-		private const int Start = -2;
-		private const int End = -3;
+
+		private readonly int width;
+		private readonly int height;
+		private readonly int[,] map;
+		private const int Empty = -2;
+		private const int Obstacle = -1;
+		private const int Target = -3;
+		private const int Way = -4;
+		private const int Start = 0;
 
 		public void FillWithBlockade()
 		{
-			for (int x = 0; x <= 4; x++)
-			for (int y = 3; y <= 4; y++)
-				data[x, y] = -1;
+			Random rnd = new Random();
+			if (width >= 3 && height >= 3)
+				for (int x = 1; x < width - 3; x++)
+				for (int y = 1; y < height - 2; y++)
+					map[x, y] = rnd.NextDouble() >= 0.5 ? Empty : Obstacle;
 		}
 
 		public void SetStart(int x, int y)
 		{
-			data[x, y] = Start;
+			map[x, y] = Start;
+			start = new Point(x, y);
 		}
-		public void SetEnd(int x, int y)
+
+		private Point start;
+
+		public void SetTarget(int x, int y)
 		{
-			data[x, y] = End;
+			map[x, y] = Target;
+			target = new Point(x, y);
 		}
+
+		private Point target;
 
 		public void FindWay()
 		{
-			CanFillMoreNeighbours(Start);
-			//Find all 1, fill all unfilled neighbours with 2, etc. until map is filled
-			int count = 1;
-			while (CanFillMoreNeighbours(count++)) {}
-			//When done go from E to S by finding the lowest neighbour (store result list)
+			List<Point> checkNext;
+			do
+			{
+				checkNext = FindAll(counter);
+				counter++;
+				foreach (Point item in checkNext)
+				{
+					foreach (var point in FindEmptyNeighbors(item))
+						map[point.Item1, point.Item2] = counter;
+					for (int x = -1; x <= 1; x++)
+						for (int y = -1; y <= 1; y++)
+							if ((x != 0 || y != 0) && x + item.Item1 >= 0 && x + item.Item1 < width &&
+									y + item.Item2 >= 0 && y + item.Item2 < height &&
+									map[item.Item1 + x, item.Item2 + y] == Target)
+								return;
+				}
+			} while (checkNext.Count > 0);
 		}
 
-		private bool CanFillMoreNeighbours(int type)
-		{
-			var positions = FindAll(type);
-			foreach (var pos in positions)
-			foreach (var neighbour in FindEmptyNeighbours(pos))
-				Set(neighbour, type <= 0 ? 1 : type + 1);
-			return positions.Count > 0;
-		}
+		private int counter = 0;
 
-		private List<Tuple<int, int>> FindAll(int type)
+		private List<Point> FindAll(int effort)
 		{
-			var result = new List<Tuple<int, int>>();
-			for (int x = 0; x < Width; x++)
-				for (int y = 0; y < Height; y++)
-					if (data[x, y] == type)
-						result.Add(new Tuple<int, int>(x, y));
+			var result = new List<Point>();
+			for (int x = 0; x < width; x++)
+			for (int y = 0; y < height; y++)
+				if (map[x, y] == effort)
+					result.Add(new Point(x, y));
 			return result;
 		}
 
-		//Mostly from GameOfLife/Game.cs
-		public List<Tuple<int, int>> FindEmptyNeighbours(Tuple<int, int> check)
+		private List<Point> FindEmptyNeighbors(Point point)
 		{
-			int checkX = check.Item1;
-			int checkY = check.Item2;
-			var neighbours = new List<Tuple<int, int>>();
+			List<Point> temp = new List<Point>();
+			int xPos = point.Item1;
+			int yPos = point.Item2;
 			for (int x = -1; x <= 1; x++)
-				for (int y = -1; y <= 1; y++)
+			for (int y = -1; y <= 1; y++)
+				if ((x != 0 || y != 0) && x + xPos >= 0 && x + xPos < width && y + yPos >= 0 &&
+						y + yPos < height && map[xPos + x, yPos + y] == Empty)
 				{
-					if ((x != 0 || y != 0) &&
-						x + checkX >= 0 &&
-						x + checkX < Width &&
-						y + checkY >= 0 &&
-						y + checkY < Height &&
-						data[x + checkX, y + checkY] == 0)
-						neighbours.Add(new Tuple<int, int>(x+checkX, y+checkY));
+					map[xPos + x, yPos + y] = counter;
+					temp.Add(new Point(x + xPos, y + yPos));
 				}
-			return neighbours;
-		}
-
-		public void Set(Tuple<int, int> pos, int value)
-		{
-			data[pos.Item1, pos.Item2] = value;
+			return temp;
 		}
 
 		public void Draw()
 		{
-			for (int y = 0; y < Height; y++)
+			for (int x = 0; x < width; x++)
 			{
-				for (int x = 0; x < Width; x++)
-					Console.Write(
-						data[x, y] == Blockade
-							? "B"
-							: data[x,y] == Start
-								? "S"
-								: data[x, y] == End
-									? "E"
-									: data[x, y] > 0 && data[x, y] < 10
-										? data[x,y].ToString()
-										: ".");
+				for (int y = 0; y < height; y++)
+				{
+					Console.Write(map[x, y] == Obstacle
+						? "x "
+						: map[x, y] == Start
+							? "s "
+							: map[x, y] == Target
+								? "e "
+								: map[x, y] > 0 ? map[x, y].ToString("00") : map[x, y] == Way ? "w " : ". ");
+					Console.Write(" ");
+				}
 				Console.WriteLine();
 			}
 		}

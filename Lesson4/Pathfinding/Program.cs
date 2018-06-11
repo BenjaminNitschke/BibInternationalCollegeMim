@@ -1,18 +1,15 @@
-﻿using System;
-
-namespace Pathfinding
+﻿namespace Pathfinding
 {
 	public class Program
 	{
 		public static void Main()
 		{
-			var map = new Map(7, 7);
+			var map = new Map(20, 20);
 			map.FillWithBlockade();
-			map.SetStart(2, 1);
-			map.SetEnd(1, 6);
+			map.SetStart(0, 1);
+			map.SetTarget(6, 4);
 			map.FindWay();
 			map.Draw();
-			Console.ReadLine();
 		}
 	}
 }
