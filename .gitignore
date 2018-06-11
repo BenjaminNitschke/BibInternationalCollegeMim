@@ -50,5 +50,12 @@ Release/
 Debug/
 v15/
 *.cache
-Lesson3/GameOfLife/_NCrunch_GameOfLife/GameOfLife.crunchsolution.cache
+_NCrunch_*
 *.cache
+Library/
+Temp/
+Managed/
+*_Data
+docs/
+html/
+Cpp/outer_space-wallpaper-1280x720.jpg
