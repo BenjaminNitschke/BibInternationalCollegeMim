@@ -1,0 +1,11 @@
+E:\BIB\MIM 2\Projekte\Pthfinding\Pthfinding\bin\Debug\Pthfinding.exe
+E:\BIB\MIM 2\Projekte\Pthfinding\Pthfinding\bin\Debug\Pthfinding.pdb
+E:\BIB\MIM 2\Projekte\Pthfinding\Pthfinding\obj\Debug\Pthfinding.csprojResolveAssemblyReference.cache
+E:\BIB\MIM 2\Projekte\Pthfinding\Pthfinding\obj\Debug\Pthfinding.exe
+E:\BIB\MIM 2\Projekte\Pthfinding\Pthfinding\obj\Debug\Pthfinding.pdb
+F:\BIB\MIM 2\Projekte\Pthfinding\Pthfinding\obj\Debug\Pthfinding.exe
+F:\BIB\MIM 2\Projekte\Pthfinding\Pthfinding\obj\Debug\Pthfinding.pdb
+F:\BIB\MIM 2\Projekte\Pthfinding\Pthfinding\bin\Debug\Pthfinding.exe
+F:\BIB\MIM 2\Projekte\Pthfinding\Pthfinding\bin\Debug\Pthfinding.pdb
+F:\BIB\MIM 2\Projekte\Pthfinding\Pthfinding\obj\Debug\Pthfinding.csprojAssemblyReference.cache
+F:\BIB\MIM 2\Projekte\Pthfinding\Pthfinding\obj\Debug\Pthfinding.csproj.CoreCompileInputs.cache
