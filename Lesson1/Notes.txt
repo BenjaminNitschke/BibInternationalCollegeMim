@@ -1,7 +1,0 @@
-- look at existing Unity3D code
-- talk about improvements, e.g. not keeping original messing around code like GameObject.FindObjectOfType<...>() cluttered all over the code
-  - Use properties to clean up
-  - Move things around so we don't need to call other code so many times
-  - Use proper classes and inheritance
-  - Code inspectors and test frameworks help: Visual Studio, ReSharper, NCrunch, NDepend, NCode, many more
-  - Pathfinder rule: Always leave code better than you found it
