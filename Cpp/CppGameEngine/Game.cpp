@@ -1,6 +1,4 @@
 #include "Game.h"
-#include "GLFW/glfw3.h"
-#include <functional>
 #include <algorithm>
 
 using namespace CppGameEngine;
@@ -31,6 +29,7 @@ Game::Game(std::string gameName)
 	glfwInit();
 	window = glfwCreateWindow(1280, 720, gameName.c_str(), NULL, NULL);
 	glfwMakeContextCurrent(window);
+	glewInit();
 	//Für verhindern der verzerrung bei resizing
 	//glfwSetWindowSizeLimits(window, 1280, 720, 1280, 720);
 	glEnable(GL_BLEND);

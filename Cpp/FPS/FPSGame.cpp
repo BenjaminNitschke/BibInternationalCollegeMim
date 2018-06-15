@@ -7,13 +7,53 @@ FPSGame::FPSGame() : Game("FPS Game")
 {
 	groundTexture = std::make_shared<Texture>("Ground.png");
 	wallTexture = std::make_shared<Texture>("Wall.png");
+	LoadResources();
+	CreateGround();
+	CreateWall();
+}
+
+void FPSGame::LoadResources()
+{
+	groundShader = std::make_shared<Shader>("" "void main(){"
+		" gl_Position.xyz = gl.Position.xyz;//vertexPosition_modelspace;"
+		" gl_Position.w = 1.0;"
+		"}",
+		"#version 330 core"
+		"put vec3 color;"
+		"void main(){"
+		" color = vec3(1,0,0);"
+		"}");
+	CreateGround();
+	CreateWall();
+}
+
+void FPSGame::PlayGame()
+{
+	Run([=]()
+	{
+		KeyPressReactions();
+		//Drawing the Sky
+		glClearColor(49 / 255.0f, 90 / 255.0f, 137 / 255.0f, 1);
+		SetUpProjectionMatrix(1, 100, 60);
+		SetUpCamera();
+		groundShader->Use();
+		DrawGround();
+		DrawWall();
+	});
+}
+
+void FPSGame::CreateGround()
+{
 	aGroundVertices[0] = VertexPositionUV(-10, -10, 0, 0, 0);
 	aGroundVertices[1] = VertexPositionUV(10, -10, 0, 20, 0);
 	aGroundVertices[2] = VertexPositionUV(10, 10, 0, 20, 20);
 	aGroundVertices[3] = VertexPositionUV(-10, -10, 0, 0, 0);
 	aGroundVertices[4] = VertexPositionUV(10, 10, 0, 20, 20);
 	aGroundVertices[5] = VertexPositionUV(-10, 10, 0, 0, 20);
+}
 
+void FPSGame::CreateWall()
+{
 	//Front
 	aWallVertices[0] = VertexPositionUV(0, 0, 0, 0, 0);
 	aWallVertices[1] = VertexPositionUV(0, 0, 1, 0, 1);
@@ -54,21 +94,6 @@ FPSGame::FPSGame() : Game("FPS Game")
 	aWallVertices[28] = VertexPositionUV(1, 1, 1, 1, 1);
 	aWallVertices[29] = VertexPositionUV(1, 1, 0, 1, 0);
 }
-
-void FPSGame::PlayGame()
-{
-	Run([=]()
-	{
-		KeyPressReactions();
-		//Drawing the Sky
-		glClearColor(49 / 255.0f, 90 / 255.0f, 137 / 255.0f, 1);
-		SetUpProjectionMatrix(1, 100, 60);
-		SetUpCamera();
-		DrawGround();
-		DrawWall();
-	});
-}
-
 void FPSGame::SetUpProjectionMatrix(float nearPlane, float farPlane, float fov)
 {
 	glMatrixMode(GL_PROJECTION);

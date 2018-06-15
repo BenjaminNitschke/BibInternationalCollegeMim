@@ -1,5 +1,5 @@
 #pragma once
-#include <GL/GL.h>
+#include "Header_Includes.h"
 
 namespace CppGameEngine
 {

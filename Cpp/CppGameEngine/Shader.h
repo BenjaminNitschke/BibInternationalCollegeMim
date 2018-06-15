@@ -1,15 +1,15 @@
 #pragma once
-#include <GL\glew.h>
+#include"Header_Includes.h"
 namespace CppGameEngine
 {
 	class Shader
 	{
 	public:
-		Shader(char* vertexShaderCode, char* pixelShaderCode);
+		Shader(const char* vertexShaderCode,const char* pixelShaderCode);
 		void Use();
 
 	private:
-		GLuint CreateShader(GLenum type, char* code);
+		GLuint CreateShader(GLenum type,const char* code);
 		GLuint vertexShader;
 		GLuint pixelShader;
 		GLuint program;
