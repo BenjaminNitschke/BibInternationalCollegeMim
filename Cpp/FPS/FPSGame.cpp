@@ -90,7 +90,6 @@ void FPSGame::SetUpCamera()
 
 void FPSGame::DrawGround()
 {
-	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, groundTexture->GetHandle());
 	glBegin(GL_TRIANGLES);
 	for (int v = 0; v < sizeof(aGroundVertices) / VertexPositionUV::SizeInBytes; v++)
