@@ -1,7 +1,5 @@
 #pragma once
-#include <GLFW/glfw3.h>
-#include <GL/gl.h>
-#include <string>
+#include "Headers.h"
 
 namespace CppGameEngine
 {

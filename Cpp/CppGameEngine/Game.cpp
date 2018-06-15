@@ -1,5 +1,4 @@
 #include "Game.h"
-#include "GLFW/glfw3.h"
 #include <functional>
 #include <algorithm>
 
@@ -35,7 +34,10 @@ Game::Game(std::string gameName)
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_DEPTH_TEST);
 	glfwSetKeyCallback(window, OnKeyPressed);
+	// Must be done here for Shader.cpp to work
+	glewInit();
 }
 
 Game::~Game()
