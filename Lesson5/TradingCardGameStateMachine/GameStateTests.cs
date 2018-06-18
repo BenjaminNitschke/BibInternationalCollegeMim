@@ -8,7 +8,9 @@ namespace TradingCardGameStateMachine
 		[SetUp]
 		public void CreateGame()
 		{
-			game = new Game(newState => Console.WriteLine("Changing game state to: " + newState));
+			game = new Game((newState, newRoundState, currentPlayer) =>
+				Console.WriteLine("Changing game state to: " + newState.GetType().Name + " " +
+					(newRoundState?.GetType().Name ?? "") + " " + currentPlayer));
 		}
 
 		private Game game;
@@ -19,8 +21,16 @@ namespace TradingCardGameStateMachine
 			Assert.That(game.State, Is.InstanceOf<ChooseStartPlayer>());
 			game.Tick();
 			Assert.That(game.State, Is.InstanceOf<Playing>());
-			game.Tick();
+			while (game.State is Playing)
+				game.Tick();
 			Assert.That(game.State, Is.InstanceOf<GameOver>());
 		}
+
+		[Test]
+		public void PlayRound()
+		{
+			game.Tick();
+		}
+
 	}
 }
