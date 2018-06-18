@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using TradingCardGameStateMachine.GameStates;
+using TradingCardGameStateMachine.RoundPlayerStates;
 
 namespace TradingCardGameStateMachine
 {

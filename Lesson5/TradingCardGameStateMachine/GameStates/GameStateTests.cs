@@ -1,7 +1,7 @@
 using System;
 using NUnit.Framework;
 
-namespace TradingCardGameStateMachine
+namespace TradingCardGameStateMachine.GameStates
 {
 	public class GameStateTests
 	{

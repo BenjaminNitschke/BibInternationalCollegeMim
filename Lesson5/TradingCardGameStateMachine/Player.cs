@@ -26,7 +26,7 @@ namespace TradingCardGameStateMachine
 
 		public override string ToString()
 		{
-			return Name;
+			return Name + " HP=" + HP + ", Mana=" + Mana;
 		}
 	}
 }

@@ -1,21 +1,7 @@
-﻿using System;
+using TradingCardGameStateMachine.RoundPlayerStates;
 
-namespace TradingCardGameStateMachine
+namespace TradingCardGameStateMachine.GameStates
 {
-	public abstract class GameState
-	{
-		public abstract void Update(Game game);
-	}
-
-	public class ChooseStartPlayer : GameState
-	{
-		public override void Update(Game game)
-		{
-			game.StartPlayer = game.Players[new Random().Next(2)];
-			game.GoToNextState(new Playing());
-		}
-	}
-
 	public class Playing : GameState
 	{
 		public override void Update(Game game)
@@ -32,14 +18,6 @@ namespace TradingCardGameStateMachine
 			var round = new Round(current, other);
 			while (!(round.State is RoundDone))
 				round.Tick(game);
-		}
-	}
-
-	public class GameOver : GameState
-	{
-		public override void Update(Game game)
-		{
-			//Show winner
 		}
 	}
 }
