@@ -21,6 +21,7 @@ public:
 	void LoadResources() {
 		groundTexture = std::make_shared<Texture>("Ground.png");
 		wallTexture = std::make_shared<Texture>("Wall.png");
+		/*
 		groundShader = std::make_shared<Shader>(
 			// Vertex Shader
 			"void main(){"
@@ -33,8 +34,10 @@ public:
 			"void main() {"
 			"	color = vec3(1, 0, 0);"
 			"}");
+		*/
 	}
 	void CreateGround() {
+		//TODO: only use 4 vertices per quad
 		vertices[0] = VertexPositionUV(-10, -10, 0, 0, 0);
 		vertices[1] = VertexPositionUV(10, -10, 0, 20, 0);
 		vertices[2] = VertexPositionUV(10, 10, 0, 20, 20);
@@ -43,8 +46,7 @@ public:
 		vertices[5] = VertexPositionUV(-10, 10, 0, 0, 20);
 	}
 	void CreateWall() {
-
-		// A1
+		//TODO: only use 4 vertices per quad
 		int wallVertex = 6;
 		vertices[wallVertex++] = VertexPositionUV(-2, -2, 1, 0, 1);
 		vertices[wallVertex++] = VertexPositionUV(-2, -2, 0, 0, 0);
@@ -52,137 +54,29 @@ public:
 		vertices[wallVertex++] = VertexPositionUV(-2, -2, 0, 0, 0);
 		vertices[wallVertex++] = VertexPositionUV(-0.5f, -2, 1, 1, 1);
 		vertices[wallVertex++] = VertexPositionUV(-0.5f, -2, 0, 1, 0);
+		// Create Vertex Buffer
+		glGenBuffers(1, &vbo);
+		// Bind Buffer
+		glBindBuffer(GL_ARRAY_BUFFER, vbo);
+		// Fill Buffer
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-		/*
+		// Create Index Buffer
+		glGenBuffers(1, &ibo);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+#define INDEX_BUFFER_BYTE_SIZE sizeof(unsigned short)*2*2*3
+		unsigned short indices[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+			//TODO: { 0, 1, 2, 0, 2, 3, 4, 5, 6, 4, 6, 7 };
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, INDEX_BUFFER_BYTE_SIZE, indices, GL_STATIC_DRAW);
 
-		// A2
-		2.0  1.0 - 2.0 2.0 1.0
-		2.0  0.0 - 2.0 2.0 0.0
-		0.5  0.0 - 2.0 0.5 0.0
-		2.0  1.0 - 2.0 2.0 1.0
-		0.5  1.0 - 2.0 0.5 1.0
-		0.5  0.0 - 2.0 0.5 0.0
-
-		// B1
-		- 2.0  1.0  2.0 2.0  1.0
-		- 2.0  0.0   2.0 2.0 0.0
-		- 0.5  0.0   2.0 0.5 0.0
-		- 2.0  1.0  2.0 2.0  1.0
-		- 0.5  1.0  2.0 0.5  1.0
-		- 0.5  0.0   2.0 0.5 0.0
-
-		// B2
-		2.0  1.0  2.0 2.0  1.0
-		2.0  0.0   2.0 2.0 0.0
-		0.5  0.0   2.0 0.5 0.0
-		2.0  1.0  2.0 2.0  1.0
-		0.5  1.0  2.0 0.5  1.0
-		0.5  0.0   2.0 0.5 0.0
-
-		// C1
-		- 2.0  1.0 - 2.0 0.0  1.0
-		- 2.0  0.0 - 2.0 0.0 0.0
-		- 2.0  0.0 - 0.5 1.5 0.0
-		- 2.0  1.0 - 2.0 0.0  1.0
-		- 2.0  1.0 - 0.5 1.5  1.0
-		- 2.0  0.0 - 0.5 1.5 0.0
-
-		// C2
-		- 2.0  1.0   2.0 2.0 1.0
-		- 2.0  0.0   2.0 2.0 0.0
-		- 2.0  0.0   0.5 0.5 0.0
-		- 2.0  1.0  2.0 2.0 1.0
-		- 2.0  1.0  0.5 0.5 1.0
-		- 2.0  0.0   0.5 0.5 0.0
-
-		// D1
-		2.0  1.0 - 2.0 0.0 1.0
-		2.0  0.0 - 2.0 0.0 0.0
-		2.0  0.0 - 0.5 1.5 0.0
-		2.0  1.0 - 2.0 0.0 1.0
-		2.0  1.0 - 0.5 1.5 1.0
-		2.0  0.0 - 0.5 1.5 0.0
-
-		// D2
-		2.0  1.0  2.0 2.0 1.0
-		2.0  0.0   2.0 2.0 0.0
-		2.0  0.0   0.5 0.5 0.0
-		2.0  1.0  2.0 2.0 1.0
-		2.0  1.0  0.5 0.5 1.0
-		2.0  0.0   0.5 0.5 0.0
-
-		// Upper hallway - L
-		- 0.5  1.0 - 3.0 0.0 1.0
-		- 0.5  0.0 - 3.0 0.0 0.0
-		- 0.5  0.0 - 2.0 1.0 0.0
-		- 0.5  1.0 - 3.0 0.0 1.0
-		- 0.5  1.0 - 2.0 1.0 1.0
-		- 0.5  0.0 - 2.0 1.0 0.0
-
-		// Upper hallway - R
-		0.5  1.0 - 3.0 0.0 1.0
-		0.5  0.0 - 3.0 0.0 0.0
-		0.5  0.0 - 2.0 1.0 0.0
-		0.5  1.0 - 3.0 0.0 1.0
-		0.5  1.0 - 2.0 1.0 1.0
-		0.5  0.0 - 2.0 1.0 0.0
-
-		// Lower hallway - L
-		- 0.5  1.0  3.0 0.0 1.0
-		- 0.5  0.0   3.0 0.0 0.0
-		- 0.5  0.0   2.0 1.0 0.0
-		- 0.5  1.0  3.0 0.0 1.0
-		- 0.5  1.0  2.0 1.0 1.0
-		- 0.5  0.0   2.0 1.0 0.0
-
-		// Lower hallway - R
-		0.5  1.0  3.0 0.0 1.0
-		0.5  0.0   3.0 0.0 0.0
-		0.5  0.0   2.0 1.0 0.0
-		0.5  1.0  3.0 0.0 1.0
-		0.5  1.0  2.0 1.0 1.0
-		0.5  0.0   2.0 1.0 0.0
-
-		// Left hallway - Lw
-		- 3.0  1.0  0.5 1.0 1.0
-		- 3.0  0.0   0.5 1.0 0.0
-		- 2.0  0.0   0.5 0.0 0.0
-		- 3.0  1.0  0.5 1.0 1.0
-		- 2.0  1.0  0.5 0.0 1.0
-		- 2.0  0.0   0.5 0.0 0.0
-
-		// Left hallway - Hi
-		- 3.0  1.0 - 0.5 1.0 1.0
-		- 3.0  0.0 - 0.5 1.0 0.0
-		- 2.0  0.0 - 0.5 0.0 0.0
-		- 3.0  1.0 - 0.5 1.0 1.0
-		- 2.0  1.0 - 0.5 0.0 1.0
-		- 2.0  0.0 - 0.5 0.0 0.0
-
-		// Right hallway - Lw
-		3.0  1.0  0.5 1.0 1.0
-		3.0  0.0   0.5 1.0 0.0
-		2.0  0.0   0.5 0.0 0.0
-		3.0  1.0  0.5 1.0 1.0
-		2.0  1.0  0.5 0.0 1.0
-		2.0  0.0   0.5 0.0 0.0
-
-		// Right hallway - Hi
-		3.0  1.0 - 0.5 1.0 1.0
-		3.0  0.0 - 0.5 1.0 0.0
-		2.0  0.0 - 0.5 0.0 0.0
-		3.0  1.0 - 0.5 1.0 1.0
-		2.0  1.0 - 0.5 0.0 1.0
-		2.0  0.0 - 0.5 0.0 0.0
-		*/
 	}
 	void PlayGame()
 	{
 		Run([=]() {
 			CreatePerspectiveMatrix();
 			SetupCamera();
-			RenderSky();
-			RenderGround();
+			//RenderSky();
+			//RenderGround();
 			RenderWall();
 			//Add some sound
 		});
@@ -230,7 +124,7 @@ public:
 		glClearColor(49 / 255.0f, 90 / 255.0f, 137 / 255.0f, 1.0f);
 	}
 	void RenderGround() {
-		groundShader->Use();
+		//groundShader->Use();
 		glBindTexture(GL_TEXTURE_2D, groundTexture->GetHandle());
 		glBegin(GL_TRIANGLES);
 		for (int v = 0; v < 6; v++)
@@ -240,15 +134,29 @@ public:
 	void RenderWall() {
 		//Creating walls(by importing a text file)
 		glBindTexture(GL_TEXTURE_2D, wallTexture->GetHandle());
+		/*
 		glBegin(GL_TRIANGLES);
 		for (int v = 6; v < sizeof(vertices) / VertexPositionUV::SizeInBytes; v++) // Rest is walls
 			vertices[v].Draw();
 		glEnd();
+		*/
+		glBindBuffer(GL_ARRAY_BUFFER, vbo);
+		glClientActiveTexture(GL_TEXTURE0);
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, VertexPositionUV::SizeInBytes, 0);
+		glEnableVertexAttribArray(1);
+		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, VertexPositionUV::SizeInBytes, (void*)12);
+
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+		glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_SHORT, (void*)12);
+		//int error = glGetError();
 	}
 private:
 	std::shared_ptr<Texture> groundTexture;
 	std::shared_ptr<Texture> wallTexture;
-	std::shared_ptr<Shader> groundShader;
+	unsigned int vbo;
+	unsigned int ibo;
+	//std::shared_ptr<Shader> groundShader;
 	VertexPositionUV vertices[12];
 	float playerPositionX;
 	float playerPositionY;
