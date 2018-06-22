@@ -8,6 +8,7 @@ namespace CppGameEngine
 	public:
 		Shader(const char* vertexShaderCode, const char* pixelShaderCode);
 		void Use();
+		GLuint GetHandle() { return program; }
 
 	private:
 		GLuint CreateShader(GLenum type, const char* code);
