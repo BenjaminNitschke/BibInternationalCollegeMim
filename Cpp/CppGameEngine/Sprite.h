@@ -11,9 +11,10 @@ namespace CppGameEngine
 		// Since we did not touch viewport matrices, the screen goes from -1 to +1, which is 2.0 and we
 		// multiply heights by 2, so 2, 1 is required to fill the whole screen with this code.
 		Sprite(std::shared_ptr<Texture> texture, float x, float y, float width, float height)
-			: texture(texture), initialX(x), initialY(y), width(width), height(height * 2.0f) {}
-
-		void Draw(float x = 0.0f, float y = 0.0f);
+			: texture(texture), initialX(x), initialY(y), width(width), height(height * 2.0f)
+		{
+		}
+		void virtual Draw(float x = 0.0f, float y = 0.0f);
 
 		void SetAspectRatio(float setHeight) {
 			height = setHeight;

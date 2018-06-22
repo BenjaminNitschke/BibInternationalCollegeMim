@@ -1,6 +1,6 @@
 #pragma once
 #include <GLFW/glfw3.h>
-#include <GL/gl.h>
+#include <GL/GL.h>
 #include <string>
 
 namespace CppGameEngine
