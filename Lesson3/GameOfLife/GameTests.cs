@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Threading;
+using NUnit.Framework;
 
 namespace GameOfLife
 {
@@ -121,6 +122,25 @@ namespace GameOfLife
 			Assert.That(game.IsAlive(1, 1), Is.True);
 			game.Tick();
 			Assert.That(game.IsAlive(1, 1), Is.False);
+		}
+
+		[Test]
+		public void Glider()
+		{
+			game = new Game(20, 20);
+			game.Set(0, 2, true);
+			game.Set(1, 3, true);
+			game.Set(2, 1, true);
+			game.Set(2, 2, true);
+			game.Set(2, 3, true);
+	
+			for (int i=0; i<100; i++)
+			{
+				game.Tick();
+				game.Draw();
+				Thread.Sleep(100);
+			}
+
 		}
 	}
 }

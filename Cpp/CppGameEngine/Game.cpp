@@ -1,5 +1,4 @@
 #include "Game.h"
-#include "GLFW/glfw3.h"
 #include <functional>
 #include <algorithm>
 
@@ -30,10 +29,15 @@ Game::Game(std::string gameName)
 {
 	glfwInit();
 	window = glfwCreateWindow(1280, 720, gameName.c_str(), NULL, NULL);
+	//SpaceInvaders: glfwSetWindowSizeLimits(window, 1280, 720, 1280, 720);
 	glfwMakeContextCurrent(window);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_DEPTH_TEST);
 	glfwSetKeyCallback(window, OnKeyPressed);
+	// Must be done here for Shader.cpp to work
+	glewInit();
 }
 
 Game::~Game()

@@ -21,7 +21,7 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SpaceInvaders.h">
+    <ClInclude Include="SpaceInvadersGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -29,7 +29,10 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SpaceInvaders.cpp">
+    <ClCompile Include="SpaceInvadersGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Program.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -43,6 +46,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="SpaceInvaders.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Background.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
