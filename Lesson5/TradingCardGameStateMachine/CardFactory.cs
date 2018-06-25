@@ -17,9 +17,9 @@ namespace TradingCardGameStateMachine
 					SetCast((us, target, card) =>
 					{
 						us.Mana -= card.ManaCost;
+						target.DealDamage(6);
 						Console.WriteLine("Dealing Lightning Bolt to " + target + ". " +
 							"Damage Dealt: 6, Mana Lost: "+card.ManaCost);
-						target.DealDamage(6);
 					});
 			case CardType.Defense:
 				return

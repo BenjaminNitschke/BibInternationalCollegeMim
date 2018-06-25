@@ -9,7 +9,7 @@ namespace TradingCardGameStateMachine.GameStates
 			ExecutePlayerStates(game.StartPlayer, game.OtherPlayer, game);
 			ExecutePlayerStates(game.OtherPlayer, game.StartPlayer, game);
 			game.RoundNumber++;
-			if (game.StartPlayer.HP <= 0 || game.OtherPlayer.HP <= 0)
+			if (game.StartPlayer.HP <= 0 || game.OtherPlayer.HP <= 0 || game.StartPlayer.Mana < 0)
 				game.GoToNextState(new GameOver());
 		}
 

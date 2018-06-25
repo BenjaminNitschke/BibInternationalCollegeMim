@@ -10,7 +10,7 @@ namespace TradingCardGameStateMachine
 		public Game(Action<GameState, RoundPlayerState, Player> onStateChange = null)
 		{
 			OnStateChange = onStateChange;
-			Players = new List<Player> { new Player("Player 1"), new Player("Player 2") };
+			Players = new List<Player> { new Player("1"), new Player("2") };
 			GoToNextState(new ChooseStartPlayer());
 		}
 
@@ -25,7 +25,8 @@ namespace TradingCardGameStateMachine
 			State = state;
 			NotifyStateChange(state);
 		}
-		public void NotifyStateChange(GameState state, RoundPlayerState roundState = null, Player roundCurrentPlayer = null)
+		public void NotifyStateChange(GameState state, RoundPlayerState roundState = null,
+			Player roundCurrentPlayer = null)
 		{
 			OnStateChange?.Invoke(state, roundState, roundCurrentPlayer);
 		}

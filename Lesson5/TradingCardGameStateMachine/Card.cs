@@ -42,5 +42,10 @@ namespace TradingCardGameStateMachine
 		}
 
 		public Action<Player, Player, Card> CastAction { get; private set; }
+
+		public override string ToString()
+		{
+			return Name;
+		}
 	}
 }

@@ -6,7 +6,7 @@ namespace TradingCardGameStateMachine.GameStates
 	{
 		public override void Update(Game game)
 		{
-			game.StartPlayer = game.Players[new Random().Next(2)];
+			game.StartPlayer = game.Players[new Random().Next(game.Players.Count)];
 			game.GoToNextState(new Playing());
 		}
 	}

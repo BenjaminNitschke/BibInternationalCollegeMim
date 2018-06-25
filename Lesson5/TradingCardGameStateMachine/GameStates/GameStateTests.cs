@@ -24,6 +24,7 @@ namespace TradingCardGameStateMachine.GameStates
 			while (game.State is Playing)
 				game.Tick();
 			Assert.That(game.State, Is.InstanceOf<GameOver>());
+			game.Tick();
 		}
 
 		[Test]
