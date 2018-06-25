@@ -1,0 +1,6 @@
+d:\users\admin\documents\visual studio 2015\Projects\PrimeFactors\PrimeFactors\bin\Debug\PrimeFactors.exe.config
+d:\users\admin\documents\visual studio 2015\Projects\PrimeFactors\PrimeFactors\bin\Debug\PrimeFactors.exe
+d:\users\admin\documents\visual studio 2015\Projects\PrimeFactors\PrimeFactors\bin\Debug\PrimeFactors.pdb
+d:\users\admin\documents\visual studio 2015\Projects\PrimeFactors\PrimeFactors\obj\Debug\PrimeFactors.csprojResolveAssemblyReference.cache
+d:\users\admin\documents\visual studio 2015\Projects\PrimeFactors\PrimeFactors\obj\Debug\PrimeFactors.exe
+d:\users\admin\documents\visual studio 2015\Projects\PrimeFactors\PrimeFactors\obj\Debug\PrimeFactors.pdb
