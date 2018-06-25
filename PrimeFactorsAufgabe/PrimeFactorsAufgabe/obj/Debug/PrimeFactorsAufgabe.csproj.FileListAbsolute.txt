@@ -1,0 +1,6 @@
+C:\Users\hbinh17gsc\Desktop\PrimeFactorsAufgabe\PrimeFactorsAufgabe\bin\Debug\PrimeFactorsAufgabe.exe.config
+C:\Users\hbinh17gsc\Desktop\PrimeFactorsAufgabe\PrimeFactorsAufgabe\bin\Debug\PrimeFactorsAufgabe.exe
+C:\Users\hbinh17gsc\Desktop\PrimeFactorsAufgabe\PrimeFactorsAufgabe\bin\Debug\PrimeFactorsAufgabe.pdb
+C:\Users\hbinh17gsc\Desktop\PrimeFactorsAufgabe\PrimeFactorsAufgabe\obj\Debug\PrimeFactorsAufgabe.csprojResolveAssemblyReference.cache
+C:\Users\hbinh17gsc\Desktop\PrimeFactorsAufgabe\PrimeFactorsAufgabe\obj\Debug\PrimeFactorsAufgabe.exe
+C:\Users\hbinh17gsc\Desktop\PrimeFactorsAufgabe\PrimeFactorsAufgabe\obj\Debug\PrimeFactorsAufgabe.pdb
