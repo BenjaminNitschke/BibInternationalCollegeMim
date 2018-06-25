@@ -17,7 +17,7 @@ namespace PrimeFactorsAufgabe
             while(number > counter)
             {
                 for (int i = 1; i < knownPrimes.Count; i++)
-                    if (number % knownPrimes[i] = 0)
+                    if (number % knownPrimes[i] == 0)
                         return false;
                     knownPrimes.Add(counter);
                     counter++;
