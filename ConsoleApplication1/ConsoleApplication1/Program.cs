@@ -35,20 +35,24 @@ namespace ConsoleApplicationPrimeNumbers
         private List<int> primeNumbers = new List<int>();
        public List<int> getPrimeNumbers(int number)
         {
-
+            
             for (int i = 1; i <= number; i++)
             {
+                int count = 0;
                 for (int j =1;j<= i;j++)
                 {
                     check = i / j;
 
                     if (check % 1 == 0)
                     {
-                        primeNumbers.Add(i / j);
+                        count++; 
                     }
 
                 }
-
+                if (count == 2)
+                {
+                    primeNumbers.Add(i);
+                }
 
 
             }
