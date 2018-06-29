@@ -22,8 +22,19 @@ Shader::Shader(const char* vertexShaderCode, const char* pixelShaderCode)
 	CheckIfNoError();
 	glAttachShader(program, CreateShader(GL_FRAGMENT_SHADER, pixelShaderCode));
 	CheckIfNoError();
+	glBindAttribLocation(program, 0, "in_Position");
+	CheckIfNoError();
 	glLinkProgram(program);
 	CheckIfNoError();
+}
+
+char* GetShaderError(int shaderHandle){
+	int length;
+	char buffer[1000];
+	glGetShaderInfoLog(shaderHandle, 1000, &length, buffer);
+	//"OpenGL4 error compiling vertex shader: " + ()
+		// +GL.GetShaderInfoLog(vertexShader);
+	return buffer;
 }
 
 GLuint Shader::CreateShader(GLenum type, const char* code)
@@ -38,7 +49,7 @@ GLuint Shader::CreateShader(GLenum type, const char* code)
 	int compileStatus;
 	glGetShaderiv(shaderHandle, GL_COMPILE_STATUS, &compileStatus);
 	if (compileStatus == 0)
-		throw "OpenGL4 error compiling vertex shader: ";// +GL.GetShaderInfoLog(vertexShader);
+		throw GetShaderError(shaderHandle);
 	return shaderHandle;
 }
 

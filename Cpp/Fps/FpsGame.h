@@ -25,18 +25,15 @@ public:
 		CheckIfNoError();
 		groundShader = std::make_shared<Shader>(
 			// Vertex Shader
-			"uniform mat4 perspective;"
-			"uniform mat4 view;"
-			"void main(){"
-			"  gl_Position.xyz = gl_Position.xyz * perspective;"
-			"  gl_Position.xyz = gl_Position.xyz * view;"
-			"  gl_Position.w = 1.0;"
+			"uniform mat4 worldViewPerspective;\n"
+			"in vec3 in_Position; \n"
+			"void main(){\n"
+			"  gl_Position = vec4(in_Position, 1) * worldViewPerspective;\n"
 			"}",
 			// Pixel Shader
-			"#version 330 core"
 			"out vec3 color;"
 			"void main() {"
-			"	color = vec3(1, 0, 0);"
+			"	color = vec3(0, 1, 0);"
 			"}");
 		CheckIfNoError();
 	}
@@ -144,13 +141,15 @@ public:
 		glGetAttribLocation(groundShader->GetHandle(), "uv");
 		CheckIfNoError();
 		// Set perspective and view matrix for vertex shader to calculate pixel pos
-		glUniformMatrix4fv(
-			glGetUniformLocation(groundShader->GetHandle(), "perspective"),
-			1, false, perspective);
-		CheckIfNoError();
-		glUniformMatrix4fv(
-			glGetUniformLocation(groundShader->GetHandle(), "view"),
-			1, false, view);
+		auto worldViewPerspectiveLocation = glGetUniformLocation(groundShader->GetHandle(), "worldViewPerspective");
+
+		glMatrixMode(GL_MODELVIEW);
+		glLoadMatrixf(perspective);
+		glMultMatrixf(view);
+		float viewPerspectiveMatrix[16];
+		glGetFloatv(GL_MODELVIEW_MATRIX, viewPerspectiveMatrix);
+
+		glUniformMatrix4fv(worldViewPerspectiveLocation,	1, true, viewPerspectiveMatrix);
 		CheckIfNoError();
 
 		glBindTexture(GL_TEXTURE_2D, groundTexture->GetHandle());
