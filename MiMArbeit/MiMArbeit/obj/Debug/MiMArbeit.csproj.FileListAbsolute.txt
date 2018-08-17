@@ -1,0 +1,6 @@
+d:\Users\admin\Desktop\MiMArbeit\MiMArbeit\bin\Debug\MiMArbeit.exe.config
+d:\Users\admin\Desktop\MiMArbeit\MiMArbeit\bin\Debug\MiMArbeit.exe
+d:\Users\admin\Desktop\MiMArbeit\MiMArbeit\bin\Debug\MiMArbeit.pdb
+d:\Users\admin\Desktop\MiMArbeit\MiMArbeit\obj\Debug\MiMArbeit.csprojResolveAssemblyReference.cache
+d:\Users\admin\Desktop\MiMArbeit\MiMArbeit\obj\Debug\MiMArbeit.exe
+d:\Users\admin\Desktop\MiMArbeit\MiMArbeit\obj\Debug\MiMArbeit.pdb
