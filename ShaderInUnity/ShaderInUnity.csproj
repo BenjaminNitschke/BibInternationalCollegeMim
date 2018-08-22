@@ -288,6 +288,7 @@
   <ItemGroup>
     <None Include="Assets\Materials\ImageEffectShader.shader" />
     <None Include="Assets\Materials\OurShader.shader" />
+    <None Include="Assets\Materials\WaterShader.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
